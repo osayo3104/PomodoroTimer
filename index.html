@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポモドーロタイマー</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="timer-container">
+            <canvas id="appleCanvas"></canvas>
+            <div id="timeDisplay">50:00</div>
+        </div>
+        <div id="message">ポモドーロを開始しますか？</div>
+        <button id="startButton">開始</button>
+        <button id="resumeButton" style="display: none;">再開</button>
+        <button id="resetButton" style="display: none;">リセット</button>
+        <div id="pomodoroCount">ポモドーロ: 0回目</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
