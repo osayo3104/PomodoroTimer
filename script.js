@@ -38,8 +38,12 @@ class PomodoroTimer {
         const dpr = window.devicePixelRatio || 1;
         this.canvas.width = rect.width * dpr;
         this.canvas.height = rect.height * dpr;
+
+        // スケーリングの再設定（前回のスケールをリセット）
+        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.ctx.scale(dpr, dpr);
 
+        // 再描画イベント
         window.addEventListener('resize', () => {
             clearTimeout(this.resizeTimeout);
             this.resizeTimeout = setTimeout(() => {
@@ -58,7 +62,7 @@ class PomodoroTimer {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.drawImage(this.appleImage, imgX, imgY, imgSize, imgSize);
-    
+
         this.totalSeconds = this.WORK_MINUTES * 60;
         this.drawProgress(0);
     }
@@ -230,7 +234,7 @@ class PomodoroTimer {
     }
 }
 
-// ✅ Service Worker の登録はクラスの外に記述
+// ✅ Service Worker の登録（オプション）
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
         .then(registration => {
@@ -241,7 +245,7 @@ if ('serviceWorker' in navigator) {
         });
 }
 
-// ✅ 起動時にインスタンスを生成
+// ✅ 起動時にインスタンス生成
 window.addEventListener('load', () => {
     new PomodoroTimer();
 });
